@@ -1,4 +1,4 @@
-﻿namespace CodeContracts.CheckParameterValuesTests
+﻿namespace CodeContracts.UnitTests.CheckParameterValuesTests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -11,7 +11,7 @@
         [Fact]
         public void ConstructorCall_WithNotNullMarkedParameterIsNull_Throws()
         {
-            throw new NotImplementedException();
+            throw new InvalidCastException();
         } 
     }
 }

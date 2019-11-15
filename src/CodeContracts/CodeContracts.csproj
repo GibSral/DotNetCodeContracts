@@ -19,7 +19,6 @@
       <PackageReference Include="AspectInjector" Version="2.2.5" />
       <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.7" />
       <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
-      <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
     </ItemGroup>
 
 </Project>
