@@ -1,12 +1,13 @@
 ﻿namespace CodeContracts.UnitTests
 {
     using Aspects;
+    using Attributes;
     using JetBrains.Annotations;
 
     public class Model
     {
         [CheckParameters]
-        public Model(string param0, [NotNull] Parameter param1)
+        public Model([NotEmpty] string param0, [NotNull] Parameter param1)
         {
             Param1 = param1;
         }
@@ -16,6 +17,16 @@
 
         [CheckParameters]
         public void DoSomethingWithNull([NotNull] object parameter)
+        {
+        }
+
+        [CheckParameters]
+        public void DoSomethingWithEmptyString([NotEmpty] string emptyString)
+        {
+        }
+
+        [CheckParameters]
+        public void DoSomethingWithNotEmptyOnNonStringParameter([NotEmpty] int someInteger)
         {
         }
     }

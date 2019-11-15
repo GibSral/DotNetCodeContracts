@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CodeContracts.Aspects
+﻿namespace CodeContracts.Aspects
 {
+    using System;
+
     [AttributeUsage(AttributeTargets.Parameter)]
     public class IsNotNull : Attribute
     {
