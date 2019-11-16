@@ -3,16 +3,18 @@
     using Aspects;
     using Attributes;
     using JetBrains.Annotations;
+    using static Attributes.NumericComparisons;
 
     public class Model
     {
         [CheckParameters]
-        public Model([NotEmpty] string param0, [NotNull] Parameter param1)
+        public Model([StringNotEmpty] string param0, [NotNull]Parameter param1)
         {
             Param1 = param1;
         }
 
-        [NotNull]
+        public static Model MakeDefault() => new Model("SomeString", new Parameter("someValue"));
+
         public Parameter Param1 { get; }
 
         [CheckParameters]
@@ -20,7 +22,7 @@
         {
             get;
             
-            [NotEmpty]
+            [StringNotEmpty]
             set;
         }
         
@@ -39,12 +41,17 @@
         }
 
         [CheckParameters]
-        public void DoSomethingWithEmptyString([NotEmpty] string emptyString)
+        public void DoSomethingWithEmptyString([StringNotEmpty] string emptyString)
         {
         }
 
         [CheckParameters]
-        public void DoSomethingWithNotEmptyOnNonStringParameter([NotEmpty] int someInteger)
+        public void DoSomethingWithNotEmptyOnNonStringParameter([StringNotEmpty] int someInteger)
+        {
+        }
+
+        [CheckParameters]
+        public void SetIntThatIsTooLow([IntIs(HigherThan,  10)] int value)
         {
         }
     }

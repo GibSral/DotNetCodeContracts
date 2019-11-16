@@ -3,7 +3,7 @@
     using System;
 
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
-    public class NotEmptyAttribute : Attribute
+    public class StringNotEmptyAttribute : Attribute
     {
     }
 }

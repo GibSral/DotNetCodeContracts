@@ -13,8 +13,12 @@
     [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property)]
     public class CheckParametersAttribute : Attribute
     {
-        private static readonly Dictionary<Type, Action<ParameterInfo, object>> ParameterCheckers =
-            new Dictionary<Type, Action<ParameterInfo, object>> { { typeof(NotNullAttribute), CheckNotNull }, { typeof(NotEmptyAttribute), CheckStringNotEmpty }, };
+        private const string PreconditionViolated = "Precondition violated:";
+
+        private static readonly Dictionary<Type, Action<ParameterInfo, object, Attribute>> ParameterCheckers = new Dictionary<Type, Action<ParameterInfo, object, Attribute>>
+        {
+            { typeof(NotNullAttribute), WithoutAttribute(CheckNotNull) }, { typeof(StringNotEmptyAttribute), WithoutAttribute(CheckStringNotEmpty) }, { typeof(IntIsAttribute), CheckIntIs }
+        };
 
         [Advice(Kind.Before)]
         public void CheckPrecondition([Argument(Source.Arguments)] object[] arguments, [Argument(Source.Metadata)] MethodBase method)
@@ -34,7 +38,7 @@
                     var argument = arguments[i];
                     var customAttributes = parameterInfo.GetCustomAttributes();
                     ExecuteChecks(customAttributes, parameterInfo, argument);
-                }    
+                }
             }
         }
 
@@ -44,7 +48,7 @@
             {
                 if (ParameterCheckers.TryGetValue(customAttribute.GetType(), out var check))
                 {
-                    check(parameterInfo, argument);
+                    check(parameterInfo, argument, customAttribute);
                 }
             }
         }
@@ -71,9 +75,43 @@
                     }
 
                     break;
-                
+
                 default: throw new PreconditionViolatedException($"Precondition violated: Argument {parameterInfo.Name} is not a string");
             }
         }
+
+        private static void CheckIntIs(ParameterInfo parameterInfo, object argument, Attribute attribute)
+        {
+            var intIsAttribute = (IntIsAttribute)attribute;
+            var value = ConvertToInt(argument, parameterInfo.Name);
+            switch (intIsAttribute.NumericComparison)
+            {
+                case NumericComparisons.HigherThan:
+                    ExecutePreconditionCheck(() => value > intIsAttribute.Number, () => $"Int must be higher than {intIsAttribute.Number} but found {value}");
+                    break;
+                case NumericComparisons.HigherOrEqualThan: break;
+                case NumericComparisons.LowerThan: break;
+                case NumericComparisons.LowerOrEqualThan: break;
+                default: throw new PreconditionViolatedException("unknown numeric comparison");
+            }
+        }
+
+        private static int ConvertToInt(object argument, string parameterName)
+        {
+            var intValue = (int)argument;
+            return intValue;
+        }
+
+        private static void ExecutePreconditionCheck(Func<bool> check, Func<string> errorMessage)
+        {
+            var result = check();
+            if (!result)
+            {
+                var message = $"{PreconditionViolated} {errorMessage()}";
+                throw new PreconditionViolatedException(message);
+            }
+        }
+
+        private static Action<ParameterInfo, object, Attribute> WithoutAttribute(Action<ParameterInfo, object> check) => (parameterInfo, value, _) => check(parameterInfo, value);
     }
 }
