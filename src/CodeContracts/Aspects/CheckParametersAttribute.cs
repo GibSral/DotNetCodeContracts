@@ -11,7 +11,7 @@
     using static NumericOperations;
 
     [Aspect(Scope.PerInstance)]
-    [Injection(typeof(CheckParametersAttribute))]
+    [Injection(typeof(CheckParametersAttribute), Priority = 10000)]
     [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property)]
     public class CheckParametersAttribute : Attribute
     {
