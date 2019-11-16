@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="CheckParameterValuesTests\IntIsHigherOrEqualThanTests.cs" />
     <Compile Include="CheckParameterValuesTests\IntIsHigherThanTests.cs" />
+    <Compile Include="CheckParameterValuesTests\IntIsLowerOrEqualThanTests.cs" />
     <Compile Include="CheckParameterValuesTests\IntIsLowerThanTests.cs" />
     <Compile Include="CheckParameterValuesTests\StringNotEmptyTests.cs" />
     <Compile Include="CheckParameterValuesTests\NotNullTests.cs" />

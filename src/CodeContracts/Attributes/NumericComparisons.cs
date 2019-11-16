@@ -5,6 +5,7 @@
         HigherThan,
         HigherOrEqualThan,
         LowerThan,
-        LowerOrEqualThan
+        LowerOrEqualThan,
+        IsInRange
     }
 }

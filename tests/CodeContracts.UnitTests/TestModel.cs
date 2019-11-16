@@ -49,7 +49,10 @@
         }
 
         [CheckParameters]
-        public void SetInt([IntIs(HigherThan, 10)] int higherThan10 = 11, [IntIs(HigherOrEqualThan, 100)] int higherOrEqualThan100 = 100, [IntIs(LowerThan, 200)] int lowerThan200 = 199)
+        public void SetInt([IntIs(HigherThan, 10)] int higherThan10 = 11,
+                           [IntIs(HigherOrEqualThan, 100)] int higherOrEqualThan100 = 100,
+                           [IntIs(LowerThan, 200)] int lowerThan200 = 199,
+                           [IntIs(LowerOrEqualThan, 1000)] int lowerOrEqualThan1000 = 1000)
         {
         }
 
@@ -74,6 +77,14 @@
         {
             get;
             [IntIs(LowerThan, -10)]
+            set;
+        }
+        
+        [CheckParameters]
+        public int IntLowerOrEqualThanMinus10
+        {
+            get;
+            [IntIs(LowerOrEqualThan, -10)]
             set;
         }
     }
