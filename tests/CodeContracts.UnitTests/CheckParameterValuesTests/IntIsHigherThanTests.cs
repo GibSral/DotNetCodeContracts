@@ -10,10 +10,40 @@
     {
         [Theory]
         [InlineData(0)]
-        public void MethodCall_WithValueIsLower_Throws(int value)
+        [InlineData(1)]
+        [InlineData(10)]
+        public void MethodCall_WithValueIsLowerOrEqual_Throws(int value)
         {
-            var model = Model.MakeDefault();
-            model.Invoking(it => it.SetIntThatIsTooLow(value)).Should().Throw<PreconditionViolatedException>();
+            var model = TestModel.MakeDefault();
+            model.Invoking(it => it.SetInt(value)).Should().Throw<PreconditionViolatedException>();
+        }
+        
+        [Theory]
+        [InlineData(11)]
+        [InlineData(12)]
+        public void MethodCall_WithValueIsHigher_DoesNotThrow(int value)
+        {
+            var model = TestModel.MakeDefault();
+            model.Invoking(it => it.SetInt(value)).Should().NotThrow<PreconditionViolatedException>();
+        }
+
+        [Theory]
+        [InlineData(-200)]
+        [InlineData(-100)]
+        public void PropertyCall_WithValueIsLowerOrEqual_Throws(int value)
+        {
+            var model = TestModel.MakeDefault();
+            model.Invoking(it => it.IntHigherThanMinus100 = value).Should().Throw<PreconditionViolatedException>();
+        }
+        
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        public void PropertyCall_WithValueIsHigher_DoesNotThrow(int value)
+        {
+            var model = TestModel.MakeDefault();
+            model.Invoking(it => it.IntHigherThanMinus100 = value).Should().NotThrow<PreconditionViolatedException>();
         }
     }
 }

@@ -15,7 +15,7 @@
         [InlineData("  ")]
         public void ConstructorCall_WithEmptyString_Throws(string emptyString)
         {
-            this.Invoking(_ => new Model(emptyString, new Parameter("SomeValue"))).Should().Throw<PreconditionViolatedException>();
+            this.Invoking(_ => new TestModel(emptyString, new Parameter("SomeValue"))).Should().Throw<PreconditionViolatedException>();
         }
 
         [Theory]
@@ -25,7 +25,7 @@
         [InlineData("  ")]
         public void MethodCall_WithEmptyString_Throws(string emptyString)
         {
-            var model = new Model("SomeString", new Parameter("SomeValue"));
+            var model = new TestModel("SomeString", new Parameter("SomeValue"));
             model.Invoking(it => it.DoSomethingWithEmptyString(emptyString)).Should().Throw<PreconditionViolatedException>();
         }
         
@@ -36,14 +36,14 @@
         [InlineData("  ")]
         public void SetProperty_WithEmptyString_Throws(string emptyString)
         {
-            var model = new Model("SomeString", new Parameter("SomeValue"));
+            var model = new TestModel("SomeString", new Parameter("SomeValue"));
             model.Invoking(it => it.NotEmptyStringProperty = emptyString).Should().Throw<PreconditionViolatedException>();
         }
 
         [Fact]
         public void MethodCall_WithNotEmptyOnOtherTypeParameterThanString_Throws()
         {
-            var model = new Model("SomeString", new Parameter("SomeValue"));
+            var model = new TestModel("SomeString", new Parameter("SomeValue"));
             model.Invoking(it => it.DoSomethingWithNotEmptyOnNonStringParameter(1)).Should().Throw<PreconditionViolatedException>();
         }
     }

@@ -48,7 +48,7 @@
     <Compile Include="CheckParameterValuesTests\IntIsHigherThanTests.cs" />
     <Compile Include="CheckParameterValuesTests\StringNotEmptyTests.cs" />
     <Compile Include="CheckParameterValuesTests\NotNullTests.cs" />
-    <Compile Include="Model.cs" />
+    <Compile Include="TestModel.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
