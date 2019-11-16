@@ -50,6 +50,7 @@
     <Compile Include="CheckParameterValuesTests\IntegerPreconditionTests\IntIsInRangeTests.cs" />
     <Compile Include="CheckParameterValuesTests\IntegerPreconditionTests\IntIsLowerOrEqualThanTests.cs" />
     <Compile Include="CheckParameterValuesTests\IntegerPreconditionTests\IntIsLowerThanTests.cs" />
+    <Compile Include="CheckParameterValuesTests\IntegerPreconditionTests\InvalidTypeTests.cs" />
     <Compile Include="CheckParameterValuesTests\StringNotEmptyTests.cs" />
     <Compile Include="CheckParameterValuesTests\NotNullTests.cs" />
     <Compile Include="TestModel.cs" />

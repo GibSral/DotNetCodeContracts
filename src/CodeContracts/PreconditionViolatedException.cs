@@ -8,5 +8,10 @@
             : base(message)
         {
         }
+        
+        public PreconditionViolatedException(string message, Exception exception)
+            : base(message, exception)
+        {
+        }
     }
 }

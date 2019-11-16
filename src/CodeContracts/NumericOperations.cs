@@ -9,7 +9,7 @@
         public static void CheckIntIsInRange(ParameterInfo parameterInfo, object argument, Attribute attribute)
         {
             var intIsAttribute = (IntIsInRangeAttribute)attribute;
-            var value = ConvertToInt(argument, parameterInfo.Name);
+            var value = ConvertToInt(argument, parameterInfo);
             switch (intIsAttribute.IncludingBorders)
             {
                 case IncludingBorders.None:
@@ -35,7 +35,7 @@
         public static void CheckIntIs(ParameterInfo parameterInfo, object argument, Attribute attribute)
         {
             var intIsAttribute = (IntIsAttribute)attribute;
-            var value = ConvertToInt(argument, parameterInfo.Name);
+            var value = ConvertToInt(argument, parameterInfo);
             switch (intIsAttribute.NumericComparison)
             {
                 case NumericComparisons.HigherThan:
@@ -54,10 +54,16 @@
             }
         }
 
-        private static int ConvertToInt(object argument, string parameterName)
+        private static int ConvertToInt(object argument, ParameterInfo parameterInfo)
         {
-            var intValue = (int)argument;
-            return intValue;
+            try
+            {
+                return (int)argument;
+            }
+            catch (InvalidCastException exception)
+            {
+                throw new PreconditionViolatedException($"{Messages.PreconditionViolated} {parameterInfo} should be of type int but found {parameterInfo.ParameterType.FullName}", exception);
+            }
         }
     }
 }

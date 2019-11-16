@@ -65,6 +65,11 @@
         }
 
         [CheckParameters]
+        public void SetValueWithIntIsOnString([IntIs(HigherThan, 10)] string valueWithIntIsCheck = "SomeString", [IntIsInRange(0, 100)] string valueWithRangeCheck = "SomeString")
+        {
+        }
+
+        [CheckParameters]
         public int IntHigherThanMinus100
         {
             get;
