@@ -16,6 +16,16 @@
         public Parameter Param1 { get; }
 
         [CheckParameters]
+
+        public string NotNullStringProperty
+        {
+            get;
+            
+            [NotEmpty]
+            set;
+        }
+
+        [CheckParameters]
         public void DoSomethingWithNull([NotNull] object parameter)
         {
         }

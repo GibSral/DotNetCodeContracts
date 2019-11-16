@@ -28,6 +28,17 @@
             var model = new Model("SomeString", new Parameter("SomeValue"));
             model.Invoking(it => it.DoSomethingWithEmptyString(emptyString)).Should().Throw<PreconditionViolatedException>();
         }
+        
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        [InlineData("  ")]
+        public void SetProperty_WithEmptyString_Throws(string emptyString)
+        {
+            var model = new Model("SomeString", new Parameter("SomeValue"));
+            model.Invoking(it => it.NotNullStringProperty = emptyString).Should().Throw<PreconditionViolatedException>();
+        }
 
         [Fact]
         public void MethodCall_WithNotEmptyOnOtherTypeParameterThanString_Throws()

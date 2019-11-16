@@ -2,7 +2,6 @@
 {
     public enum NumericComparisons
     {
-        Equal,
         HigherThan,
         HigherOrEqualThan,
         LowerThan,

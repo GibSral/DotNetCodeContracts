@@ -19,21 +19,37 @@
         [Advice(Kind.Before)]
         public void CheckPrecondition([Argument(Source.Arguments)] object[] arguments, [Argument(Source.Metadata)] MethodBase method)
         {
-            var parameterInfos = method.GetParameters();
-            for (var i = 0; i < arguments.Length; i++)
+            if (IsProperty(method))
             {
-                var parameterInfo = parameterInfos[i];
-                var argument = arguments[i];
-                var customAttributes = parameterInfo.GetCustomAttributes();
-                foreach (var customAttribute in customAttributes)
+                var parameterInfo = method.GetParameters().First();
+                var attributes = method.GetCustomAttributes();
+                ExecuteChecks(attributes, parameterInfo, arguments.First());
+            }
+            else
+            {
+                var parameterInfos = method.GetParameters();
+                for (var i = 0; i < arguments.Length; i++)
                 {
-                    if (ParameterCheckers.TryGetValue(customAttribute.GetType(), out var check))
-                    {
-                        check(parameterInfo, argument);
-                    }
+                    var parameterInfo = parameterInfos[i];
+                    var argument = arguments[i];
+                    var customAttributes = parameterInfo.GetCustomAttributes();
+                    ExecuteChecks(customAttributes, parameterInfo, argument);
+                }    
+            }
+        }
+
+        private static void ExecuteChecks(IEnumerable<Attribute> customAttributes, ParameterInfo parameterInfo, object argument)
+        {
+            foreach (var customAttribute in customAttributes)
+            {
+                if (ParameterCheckers.TryGetValue(customAttribute.GetType(), out var check))
+                {
+                    check(parameterInfo, argument);
                 }
             }
         }
+
+        private static bool IsProperty(MethodBase method) => method.IsSpecialName && !method.IsConstructor;
 
         private static void CheckNotNull(ParameterInfo parameterInfo, object argument)
         {
