@@ -2,17 +2,20 @@
 {
     using System;
 
-    [AttributeUsage(AttributeTargets.Parameter)]
+    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
     public class IntIsInRangeAttribute : Attribute
     {
-        public IntIsInRangeAttribute(int min, int max)
+        public IntIsInRangeAttribute(int lower, int upper, IncludingBorders includingBorders = IncludingBorders.None)
         {
-            Min = min;
-            Max = max;
+            Lower = lower;
+            Upper = upper;
+            IncludingBorders = includingBorders;
         }
 
-        public int Min { get; }
+        public int Lower { get; }
 
-        public int Max { get; }
+        public int Upper { get; }
+
+        public IncludingBorders IncludingBorders { get; }
     }
 }

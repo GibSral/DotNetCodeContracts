@@ -1,4 +1,4 @@
-﻿namespace CodeContracts.UnitTests.CheckParameterValuesTests
+﻿namespace CodeContracts.UnitTests.CheckParameterValuesTests.IntegerPreconditionTests
 {
     using System.Diagnostics.CodeAnalysis;
     using FluentAssertions;

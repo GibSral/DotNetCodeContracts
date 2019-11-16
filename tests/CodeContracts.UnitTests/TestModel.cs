@@ -52,7 +52,15 @@
         public void SetInt([IntIs(HigherThan, 10)] int higherThan10 = 11,
                            [IntIs(HigherOrEqualThan, 100)] int higherOrEqualThan100 = 100,
                            [IntIs(LowerThan, 200)] int lowerThan200 = 199,
-                           [IntIs(LowerOrEqualThan, 1000)] int lowerOrEqualThan1000 = 1000)
+                           [IntIs(LowerOrEqualThan, 1000)] int lowerOrEqualThan1000 = 1000,
+                           [IntIsInRange(0, 100)]
+                           int inRange0And100ExcludingBorder = 50,
+                           [IntIsInRange(-200, 200, IncludingBorders.Lower)]
+                           int inRangeMinus200And200IncludingLowerBorder = 50,
+                           [IntIsInRange(-10, 10, IncludingBorders.Upper)]
+                           int inRangeMinus10And20IncludingUpperBorder = 0,
+                           [IntIsInRange(-10, 10, IncludingBorders.Upper | IncludingBorders.Lower)]
+                           int inRangeMinus10And20IncludingBothBorders = 0)
         {
         }
 
@@ -79,12 +87,20 @@
             [IntIs(LowerThan, -10)]
             set;
         }
-        
+
         [CheckParameters]
         public int IntLowerOrEqualThanMinus10
         {
             get;
             [IntIs(LowerOrEqualThan, -10)]
+            set;
+        }
+        
+        [CheckParameters]
+        public int IntLowerWithRangeCheck
+        {
+            get;
+            [IntIsInRange(-100, 200)]
             set;
         }
     }

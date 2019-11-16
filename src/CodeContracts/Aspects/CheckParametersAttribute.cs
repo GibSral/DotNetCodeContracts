@@ -19,7 +19,8 @@
         {
             { typeof(NotNullAttribute), WithoutAttribute(CheckNotNull) },
             { typeof(StringNotEmptyAttribute), WithoutAttribute(CheckStringNotEmpty) },
-            { typeof(IntIsAttribute), CheckIntIs }
+            { typeof(IntIsAttribute), CheckIntIs },
+            { typeof(IntIsInRangeAttribute), CheckIntIsInRange }
         };
 
         [Advice(Kind.Before)]
