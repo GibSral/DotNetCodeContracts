@@ -15,7 +15,7 @@
         public void MethodCall_WithValueIsLowerOrEqual_Throws(int value)
         {
             var model = TestModel.MakeDefault();
-            model.Invoking(it => it.SetInt(value)).Should().Throw<PreconditionViolatedException>();
+            model.Invoking(it => it.SetInt(value, 100)).Should().Throw<PreconditionViolatedException>();
         }
         
         [Theory]
@@ -24,7 +24,7 @@
         public void MethodCall_WithValueIsHigher_DoesNotThrow(int value)
         {
             var model = TestModel.MakeDefault();
-            model.Invoking(it => it.SetInt(value)).Should().NotThrow<PreconditionViolatedException>();
+            model.Invoking(it => it.SetInt(value, 100)).Should().NotThrow<PreconditionViolatedException>();
         }
 
         [Theory]

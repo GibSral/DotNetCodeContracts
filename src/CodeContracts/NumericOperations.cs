@@ -16,7 +16,9 @@
                 case NumericComparisons.HigherThan:
                     Checks.ExecutePreconditionCheck(() => value > intIsAttribute.Number, () => $"Int must be higher than {intIsAttribute.Number} but found {value}");
                     break;
-                case NumericComparisons.HigherOrEqualThan: break;
+                case NumericComparisons.HigherOrEqualThan: 
+                    Checks.ExecutePreconditionCheck(() => value >= intIsAttribute.Number, () => $"Int must be higher or equal than {intIsAttribute.Number} but found {value}");
+                    break;
                 case NumericComparisons.LowerThan: break;
                 case NumericComparisons.LowerOrEqualThan: break;
                 default: throw new PreconditionViolatedException("unknown numeric comparison");
