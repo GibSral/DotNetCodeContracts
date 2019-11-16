@@ -16,12 +16,20 @@
         public Parameter Param1 { get; }
 
         [CheckParameters]
-
-        public string NotNullStringProperty
+        public string NotEmptyStringProperty
         {
             get;
             
             [NotEmpty]
+            set;
+        }
+        
+        [CheckParameters]
+        public object NotNullProperty
+        {
+            get;
+            
+            [NotNull]
             set;
         }
 

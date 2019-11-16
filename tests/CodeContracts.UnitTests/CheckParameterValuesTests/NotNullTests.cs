@@ -26,5 +26,12 @@
             var model = new Model("SomeValue", new Parameter("SomeValue"));
             model.Invoking(it => it.DoSomethingWithNull(null)).Should().Throw<PreconditionViolatedException>();
         }
+        
+        [Fact]
+        public void PropertyCall_WithNotNullMarkedParameterIsNull_Throws()
+        {
+            var model = new Model("SomeValue", new Parameter("SomeValue"));
+            model.Invoking(it => it.NotNullProperty = null).Should().Throw<PreconditionViolatedException>();
+        }
     }
 }

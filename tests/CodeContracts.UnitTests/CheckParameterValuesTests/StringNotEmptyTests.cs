@@ -37,7 +37,7 @@
         public void SetProperty_WithEmptyString_Throws(string emptyString)
         {
             var model = new Model("SomeString", new Parameter("SomeValue"));
-            model.Invoking(it => it.NotNullStringProperty = emptyString).Should().Throw<PreconditionViolatedException>();
+            model.Invoking(it => it.NotEmptyStringProperty = emptyString).Should().Throw<PreconditionViolatedException>();
         }
 
         [Fact]
