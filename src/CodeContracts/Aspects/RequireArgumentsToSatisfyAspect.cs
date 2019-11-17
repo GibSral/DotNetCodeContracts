@@ -32,13 +32,13 @@
             else
             {
                 var parameterInfos = method.GetParameters();
-                for (var i = 0; i < arguments.Length; i++)
-                {
-                    var parameterInfo = parameterInfos[i];
-                    var argument = arguments[i];
-                    var customAttributes = parameterInfo.GetCustomAttributes();
-                    ExecuteChecks(customAttributes, parameterInfo, argument);
-                }
+                ForeachParameter(arguments,
+                                 parameterInfos,
+                                 (argument, parameterInfo) =>
+                                 {
+                                     var customAttributes = parameterInfo.GetCustomAttributes();
+                                     ExecuteChecks(customAttributes, parameterInfo, argument);
+                                 });
             }
         }
 

@@ -46,8 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RequireAllArgumentsAspectTests\ReferenceArgument.cs" />
+    <Compile Include="RequireAllArgumentsAspectTests\RequireAllMixedTypes.cs" />
     <Compile Include="RequireAllArgumentsAspectTests\RequireAllReferenceTypes.cs" />
+    <Compile Include="RequireAllArgumentsAspectTests\RequireAllValueTypes.cs" />
     <Compile Include="RequireAllArgumentsAspectTests\TestModel.cs" />
+    <Compile Include="RequireAllArgumentsAspectTests\ValueArgument.cs" />
     <Compile Include="RequireArgumentsToSatisfyAspectTests\IntegerPreconditionTests\IntIsHigherOrEqualThanTests.cs" />
     <Compile Include="RequireArgumentsToSatisfyAspectTests\IntegerPreconditionTests\IntIsHigherThanTests.cs" />
     <Compile Include="RequireArgumentsToSatisfyAspectTests\IntegerPreconditionTests\IntIsInRangeTests.cs" />
