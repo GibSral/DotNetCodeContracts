@@ -1,4 +1,4 @@
-﻿namespace CodeContracts.UnitTests.CheckParameterValuesTests.IntegerPreconditionTests
+﻿namespace CodeContracts.UnitTests.RequireArgumentsToSatisfyAspectTests.IntegerPreconditionTests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

@@ -45,14 +45,14 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckParameterValuesTests\IntegerPreconditionTests\IntIsHigherOrEqualThanTests.cs" />
-    <Compile Include="CheckParameterValuesTests\IntegerPreconditionTests\IntIsHigherThanTests.cs" />
-    <Compile Include="CheckParameterValuesTests\IntegerPreconditionTests\IntIsInRangeTests.cs" />
-    <Compile Include="CheckParameterValuesTests\IntegerPreconditionTests\IntIsLowerOrEqualThanTests.cs" />
-    <Compile Include="CheckParameterValuesTests\IntegerPreconditionTests\IntIsLowerThanTests.cs" />
-    <Compile Include="CheckParameterValuesTests\IntegerPreconditionTests\InvalidTypeTests.cs" />
-    <Compile Include="CheckParameterValuesTests\StringNotEmptyTests.cs" />
-    <Compile Include="CheckParameterValuesTests\NotNullTests.cs" />
+    <Compile Include="RequireArgumentsToSatisfyAspectTests\IntegerPreconditionTests\IntIsHigherOrEqualThanTests.cs" />
+    <Compile Include="RequireArgumentsToSatisfyAspectTests\IntegerPreconditionTests\IntIsHigherThanTests.cs" />
+    <Compile Include="RequireArgumentsToSatisfyAspectTests\IntegerPreconditionTests\IntIsInRangeTests.cs" />
+    <Compile Include="RequireArgumentsToSatisfyAspectTests\IntegerPreconditionTests\IntIsLowerOrEqualThanTests.cs" />
+    <Compile Include="RequireArgumentsToSatisfyAspectTests\IntegerPreconditionTests\IntIsLowerThanTests.cs" />
+    <Compile Include="RequireArgumentsToSatisfyAspectTests\IntegerPreconditionTests\InvalidTypeTests.cs" />
+    <Compile Include="RequireArgumentsToSatisfyAspectTests\StringNotEmptyTests.cs" />
+    <Compile Include="RequireArgumentsToSatisfyAspectTests\NotNullTests.cs" />
     <Compile Include="TestModel.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

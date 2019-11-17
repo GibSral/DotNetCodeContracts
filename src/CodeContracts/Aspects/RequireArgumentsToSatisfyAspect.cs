@@ -9,10 +9,8 @@
     using JetBrains.Annotations;
     using static Checks;
 
-    [Aspect(Scope.PerInstance)]
-    [Injection(typeof(RequireArgumentsToSatisfy), Priority = 10000)]
-    [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property)]
-    public class RequireArgumentsToSatisfy : Attribute
+    [Aspect(Scope.Global)]
+    public class RequireArgumentsToSatisfyAspect
     {
         private static readonly Dictionary<Type, Action<ParameterInfo, object, Attribute>> ParameterCheckers = new Dictionary<Type, Action<ParameterInfo, object, Attribute>>
         {
