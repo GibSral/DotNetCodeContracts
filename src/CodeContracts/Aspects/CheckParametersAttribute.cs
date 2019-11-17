@@ -8,7 +8,6 @@
     using Attributes;
     using JetBrains.Annotations;
     using static Checks;
-    using static NumericOperations;
 
     [Aspect(Scope.PerInstance)]
     [Injection(typeof(CheckParametersAttribute), Priority = 10000)]
@@ -18,9 +17,9 @@
         private static readonly Dictionary<Type, Action<ParameterInfo, object, Attribute>> ParameterCheckers = new Dictionary<Type, Action<ParameterInfo, object, Attribute>>
         {
             { typeof(NotNullAttribute), WithoutAttribute(CheckNotNull) },
-            { typeof(StringNotEmptyAttribute), WithoutAttribute(CheckStringNotEmpty) },
-            { typeof(IntIsAttribute), CheckIntIs },
-            { typeof(IntIsInRangeAttribute), CheckIntIsInRange }
+            { typeof(NotEmptyAttribute), WithoutAttribute(NotEmptyAttribute.CheckNotEmpty) },
+            { typeof(IntIsAttribute), IntIsAttribute.CheckIntIs },
+            { typeof(IntIsInRangeAttribute), IntIsInRangeAttribute.CheckIntIsInRange }
         };
 
         [Advice(Kind.Before)]
@@ -63,23 +62,6 @@
             if (argument == null)
             {
                 throw new PreconditionViolatedException($"Precondition violated: Argument {parameterInfo.Name} was null");
-            }
-        }
-
-        private static void CheckStringNotEmpty(ParameterInfo parameterInfo, object argument)
-        {
-            switch (argument)
-            {
-                case null: throw new PreconditionViolatedException($"Precondition violated: Argument {parameterInfo.Name} was null");
-                case string str:
-                    if (string.IsNullOrWhiteSpace(str))
-                    {
-                        throw new PreconditionViolatedException($"Precondition violated: Argument {parameterInfo.Name} was empty");
-                    }
-
-                    break;
-
-                default: throw new PreconditionViolatedException($"Precondition violated: Argument {parameterInfo.Name} is not a string");
             }
         }
     }

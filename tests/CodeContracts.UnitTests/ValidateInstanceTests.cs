@@ -1,6 +1,7 @@
 ﻿namespace CodeContracts.UnitTests
 {
     using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
     using FluentAssertions;
     using Xunit;
 
@@ -9,15 +10,15 @@
     public class ValidateInstanceTests
     {
         [Fact]
-        public void ConstructorCall_WithInstanceIsValid_DoesNotThrow()
-        {
-            this.Invoking(_ => ValidatableModel.Valid()).Should().NotThrow();
-        }
-
-        [Fact]
         public void ConstructorCall_WithInstanceIsNotValid_Throws()
         {
             this.Invoking(_ => ValidatableModel.InValid()).Should().Throw<PostconditionViolatedException>();
+        }
+
+        [Fact]
+        public void ConstructorCall_WithInstanceIsValid_DoesNotThrow()
+        {
+            this.Invoking(_ => ValidatableModel.Valid()).Should().NotThrow();
         }
 
         [Fact]
@@ -31,6 +32,13 @@
         {
             var validatableModel = ValidatableModel.Valid();
             validatableModel.Invoking(it => it.TriggerValidationWithValidationMethodIsNoPredicate()).Should().Throw<PostconditionViolatedException>();
+        }
+
+        [Fact]
+        public void ValidateObject_WithValidationMethodThrowsException_WrapsExceptionInPostconditionException()
+        {
+            var validatableModel = ValidatableModel.Valid();
+            validatableModel.Invoking(it => it.TriggerValidationWithValidationMethodThrows()).Should().Throw<PostconditionViolatedException>().WithInnerException<TargetInvocationException>();
         }
     }
 }

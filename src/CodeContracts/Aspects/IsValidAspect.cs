@@ -5,7 +5,6 @@
     using System.Reflection;
     using AspectInjector.Broker;
     using Attributes;
-    using UnitTests;
     using static Checks;
 
     [Aspect(Scope.PerInstance)]

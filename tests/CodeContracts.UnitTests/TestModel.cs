@@ -8,7 +8,7 @@
     public class TestModel
     {
         [CheckParameters]
-        public TestModel([StringNotEmpty] string param0, [NotNull] Parameter param1)
+        public TestModel([NotEmpty] string param0, [NotNull] Parameter param1)
         {
             Param1 = param1;
         }
@@ -21,7 +21,7 @@
         public string NotEmptyStringProperty
         {
             get;
-            [StringNotEmpty]
+            [NotEmpty]
             set;
         }
 
@@ -39,12 +39,12 @@
         }
 
         [CheckParameters]
-        public void DoSomethingWithEmptyString([StringNotEmpty] string emptyString)
+        public void DoSomethingWithEmptyString([NotEmpty] string emptyString)
         {
         }
 
         [CheckParameters]
-        public void DoSomethingWithNotEmptyOnNonStringParameter([StringNotEmpty] int someInteger)
+        public void DoSomethingWithNotEmptyOnNonStringParameter([NotEmpty] int someInteger)
         {
         }
 

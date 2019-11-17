@@ -1,5 +1,6 @@
 ﻿namespace CodeContracts.UnitTests
 {
+    using System;
     using Attributes;
 
     public class ValidatableModel
@@ -38,5 +39,12 @@
         private void ValidateWithNoReturnValue()
         {
         }
+
+        [ValidateInstance(nameof(ValidateThrows))]
+        public void TriggerValidationWithValidationMethodThrows()
+        {
+        }
+        
+        private bool ValidateThrows() => throw new InvalidOperationException();
     }
 }
