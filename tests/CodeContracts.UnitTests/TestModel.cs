@@ -7,7 +7,7 @@
 
     public class TestModel
     {
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public TestModel([NotEmpty] string param0, [NotNull] Parameter param1)
         {
             Param1 = param1;
@@ -17,7 +17,7 @@
 
         public Parameter Param1 { get; }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public string NotEmptyStringProperty
         {
             get;
@@ -25,7 +25,7 @@
             set;
         }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public object NotNullProperty
         {
             get;
@@ -33,22 +33,22 @@
             set;
         }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public void DoSomethingWithNull([NotNull] object parameter)
         {
         }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public void DoSomethingWithEmptyString([NotEmpty] string emptyString)
         {
         }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public void DoSomethingWithNotEmptyOnNonStringParameter([NotEmpty] int someInteger)
         {
         }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public void SetInt([IntIs(HigherThan, 10)] int higherThan10 = 11,
                            [IntIs(HigherOrEqualThan, 100)] int higherOrEqualThan100 = 100,
                            [IntIs(LowerThan, 200)] int lowerThan200 = 199,
@@ -64,12 +64,12 @@
         {
         }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public void SetValueWithIntIsOnString([IntIs(HigherThan, 10)] string valueWithIntIsCheck = "SomeString", [IntIsInRange(0, 100)] string valueWithRangeCheck = "SomeString")
         {
         }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public int IntHigherThanMinus100
         {
             get;
@@ -77,7 +77,7 @@
             set;
         }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public int IntHigherOrEqualThanMinus10
         {
             get;
@@ -85,7 +85,7 @@
             set;
         }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public int IntLowerThanMinus10
         {
             get;
@@ -93,7 +93,7 @@
             set;
         }
 
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public int IntLowerOrEqualThanMinus10
         {
             get;
@@ -101,7 +101,7 @@
             set;
         }
         
-        [CheckParameters]
+        [RequireArgumentsToSatisfy]
         public int IntLowerWithRangeCheck
         {
             get;

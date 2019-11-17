@@ -10,9 +10,9 @@
     using static Checks;
 
     [Aspect(Scope.PerInstance)]
-    [Injection(typeof(CheckParametersAttribute), Priority = 10000)]
+    [Injection(typeof(RequireArgumentsToSatisfy), Priority = 10000)]
     [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property)]
-    public class CheckParametersAttribute : Attribute
+    public class RequireArgumentsToSatisfy : Attribute
     {
         private static readonly Dictionary<Type, Action<ParameterInfo, object, Attribute>> ParameterCheckers = new Dictionary<Type, Action<ParameterInfo, object, Attribute>>
         {
