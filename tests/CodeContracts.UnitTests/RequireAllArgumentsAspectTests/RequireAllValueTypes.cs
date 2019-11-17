@@ -15,7 +15,7 @@
         {
             this.Invoking(_ => new TestModel(arg1, arg2, arg3)).Should().Throw<PreconditionViolatedException>();
         }
-        
+
         [Theory]
         [MemberData(nameof(AtLeastOneArgumentNull))]
         public void MethodCallWithOnlyValueTypes_WithAnyArgumentNull_Throws(ValueArgument arg1, ValueArgument arg2, ReferenceArgument arg3)
@@ -23,7 +23,7 @@
             var testModel = new TestModel();
             testModel.Invoking(it => it.DefaultStructCheckOnMethod(arg1, arg2, arg3)).Should().Throw<PreconditionViolatedException>();
         }
-        
+
         public static IEnumerable<object[]> AtLeastOneArgumentNull()
         {
             var allData = new List<object[]>
@@ -35,13 +35,13 @@
 
             return allData;
         }
-        
+
         [Fact]
         public void ConstructorCallWithOnlyValueTypes_WithAllArgumentsHaveValue_DoesNotThrow()
         {
             this.Invoking(_ => new TestModel(ValueArgument.Filled(), ValueArgument.Filled(), null)).Should().NotThrow();
         }
-        
+
         [Fact]
         public void MethodCallWithOnlyValueTypes_WithAllArgumentsHaveValue_DoesNotThrow()
         {

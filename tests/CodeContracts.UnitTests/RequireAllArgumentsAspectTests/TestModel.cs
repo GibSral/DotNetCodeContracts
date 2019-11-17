@@ -7,12 +7,12 @@
         public TestModel()
         {
         }
-        
+
         [RequireAllArguments(ObjectTypes.Reference)]
         public TestModel(ReferenceArgument arg1, ReferenceArgument arg2, ValueArgument arg3)
         {
         }
-        
+
         [RequireAllArguments(ObjectTypes.Struct)]
         public TestModel(ValueArgument arg1, ValueArgument arg2, ReferenceArgument arg3)
         {

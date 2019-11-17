@@ -10,7 +10,7 @@
         Reference = 1,
         Struct = 2
     }
-    
+
     [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method)]
     [Injection(typeof(RequireAllArgumentsAspect), Priority = 20000)]
     public class RequireAllArgumentsAttribute : Attribute

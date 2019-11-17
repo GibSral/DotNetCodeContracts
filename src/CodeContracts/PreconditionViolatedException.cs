@@ -14,9 +14,9 @@
             : base(ErrorMessage(message), exception)
         {
         }
-        
+
         public static PreconditionViolatedException UnexpectedException(Exception exception) => new PreconditionViolatedException(UnexpectedExceptionMessage, exception);
-        
+
         private static string ErrorMessage(string message) => $"Precondition violated: {message}";
     }
 }

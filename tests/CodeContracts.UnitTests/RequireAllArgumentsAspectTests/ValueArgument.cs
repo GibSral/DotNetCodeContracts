@@ -13,7 +13,7 @@
         public int Value2 { get; }
 
         public static ValueArgument Filled() => new ValueArgument("SomeString", 1);
-        
+
         public static ValueArgument Default() => new ValueArgument();
     }
 }

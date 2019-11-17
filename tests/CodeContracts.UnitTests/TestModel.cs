@@ -3,6 +3,7 @@
     using Aspects;
     using Attributes;
     using JetBrains.Annotations;
+    using RequireAllArgumentsAspectTests;
     using static Attributes.NumericComparisons;
 
     public class TestModel
@@ -13,7 +14,7 @@
             Param1 = param1;
         }
 
-        public static TestModel MakeDefault() => new TestModel("SomeString", new Parameter("someValue"));
+        public static TestModel MakeValidInstance() => new TestModel("SomeString", new Parameter("someValue"));
 
         public Parameter Param1 { get; }
 
@@ -53,8 +54,7 @@
                            [IntIs(HigherOrEqualThan, 100)] int higherOrEqualThan100 = 100,
                            [IntIs(LowerThan, 200)] int lowerThan200 = 199,
                            [IntIs(LowerOrEqualThan, 1000)] int lowerOrEqualThan1000 = 1000,
-                           [IntIsInRange(0, 100)]
-                           int inRange0And100ExcludingBorder = 50,
+                           [IntIsInRange(0, 100)] int inRange0And100ExcludingBorder = 50,
                            [IntIsInRange(-200, 200, IncludingBorders.Lower)]
                            int inRangeMinus200And200IncludingLowerBorder = 50,
                            [IntIsInRange(-10, 10, IncludingBorders.Upper)]
@@ -100,13 +100,31 @@
             [IntIs(LowerOrEqualThan, -10)]
             set;
         }
-        
+
         [RequireArgumentsToSatisfy]
         public int IntLowerWithRangeCheck
         {
             get;
             [IntIsInRange(-100, 200)]
             set;
+        }
+
+        [EnsuresResultNotNull]
+        public TestModel CheckForResultNull(bool returnNull)
+        {
+            return returnNull ? null : this;
+        }
+        
+        [EnsuresResultNotNull]
+        public ValueArgument CheckForResultNullButIsValueType()
+        {
+            return ValueArgument.Filled();
+        }
+
+        [EnsuresResultNotNull]
+        public string CheckForResultStringNull()
+        {
+            return null;
         }
     }
 }

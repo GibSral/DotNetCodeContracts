@@ -39,8 +39,8 @@
                     check = (argument, parameterInfo) => CheckReferenceTypeNotNull(argument, parameterInfo) && CheckStructNotDefault(argument, parameterInfo);
                     errorMessage = parameterInfo => IsStruct(parameterInfo.ParameterType) ? StructErrorMessage(parameterInfo) : ClassErrorMessage(parameterInfo);
                     break;
-                
-                default: 
+
+                default:
                     check = (argument, parameterInfo) => false;
                     errorMessage = info => "unknown error";
                     break;
@@ -66,7 +66,7 @@
         {
             if (parameterInfo.ParameterType.IsClass)
             {
-                return argument != null;    
+                return argument != null;
             }
 
             return true;

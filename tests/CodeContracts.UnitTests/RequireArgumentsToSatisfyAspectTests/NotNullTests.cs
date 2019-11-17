@@ -26,7 +26,7 @@
             var model = new TestModel("SomeValue", new Parameter("SomeValue"));
             model.Invoking(it => it.DoSomethingWithNull(null)).Should().Throw<PreconditionViolatedException>();
         }
-        
+
         [Fact]
         public void PropertyCall_WithNotNullMarkedParameterIsNull_Throws()
         {

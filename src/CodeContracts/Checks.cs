@@ -17,7 +17,7 @@
                 assertion(argument, parameterInfo);
             }
         }
-        
+
         public static void ExecutePreconditionCheck(Func<bool> check, Func<string> errorMessage) =>
             ExecuteSafe(() => { ExecuteCheck(check, () => new PreconditionViolatedException(errorMessage())); },
                         it => new PreconditionViolatedException(UnknownException, it));
@@ -43,7 +43,7 @@
             {
                 action();
             }
-            catch (Exception exception) when(ExceptionIsNoCodeContractException(exception))
+            catch (Exception exception) when (ExceptionIsNoCodeContractException(exception))
             {
                 throw wrapException(exception);
             }

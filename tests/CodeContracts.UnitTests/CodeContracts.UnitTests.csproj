@@ -45,6 +45,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnsureResultIsNotNullTests.cs" />
     <Compile Include="RequireAllArgumentsAspectTests\ReferenceArgument.cs" />
     <Compile Include="RequireAllArgumentsAspectTests\RequireAllMixedTypes.cs" />
     <Compile Include="RequireAllArgumentsAspectTests\RequireAllReferenceTypes.cs" />

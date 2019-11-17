@@ -29,9 +29,7 @@
         {
             var allData = new List<object[]>
             {
-                new object[] { null, ValueArgument.Filled() },
-                new object[] { new ReferenceArgument(), ValueArgument.Default() },
-                new object[] { null, ValueArgument.Default() },
+                new object[] { null, ValueArgument.Filled() }, new object[] { new ReferenceArgument(), ValueArgument.Default() }, new object[] { null, ValueArgument.Default() },
             };
 
             return allData;

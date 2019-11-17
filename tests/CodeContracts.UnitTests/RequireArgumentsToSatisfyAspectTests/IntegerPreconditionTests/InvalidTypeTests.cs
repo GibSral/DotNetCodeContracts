@@ -12,14 +12,14 @@
         [Fact]
         public void IntIs_OnWrongParameterType_Throws()
         {
-            var model = TestModel.MakeDefault();
+            var model = TestModel.MakeValidInstance();
             model.Invoking(it => it.SetValueWithIntIsOnString("SomeString")).Should().Throw<PreconditionViolatedException>().WithInnerException<InvalidCastException>();
         }
-        
+
         [Fact]
         public void IntInRange_OnWrongParameterType_Throws()
         {
-            var model = TestModel.MakeDefault();
+            var model = TestModel.MakeValidInstance();
             model.Invoking(it => it.SetValueWithIntIsOnString(valueWithRangeCheck: "SomeString")).Should().Throw<PreconditionViolatedException>().WithInnerException<InvalidCastException>();
         }
     }

@@ -28,7 +28,7 @@
             var model = new TestModel("SomeString", new Parameter("SomeValue"));
             model.Invoking(it => it.DoSomethingWithEmptyString(emptyString)).Should().Throw<PreconditionViolatedException>();
         }
-        
+
         [Theory]
         [InlineData(null)]
         [InlineData("")]

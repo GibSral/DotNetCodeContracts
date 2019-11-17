@@ -44,7 +44,7 @@
         public void TriggerValidationWithValidationMethodThrows()
         {
         }
-        
+
         private bool ValidateThrows() => throw new InvalidOperationException();
     }
 }
